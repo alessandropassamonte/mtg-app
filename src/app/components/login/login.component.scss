@@ -1,0 +1,376 @@
+// //head-card-gestione-applicazioni
+
+// #head-applicazioni {
+//     background-color: white;
+//     border: none;
+//     color: #555555 !important;
+// }
+
+// #dropdown-button-esporta-app {
+//     position: absolute;
+//     display: flex;
+//     right: 30px;
+//     margin-left: auto;
+//     justify-content: center;
+
+
+//     .dropdown-toogle {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         color: white;
+
+//         fa-icon {
+//             padding: 0 3px;
+//             color: white;
+
+//             &#freccia {
+//                 font-size: 12px;
+//             }
+
+
+//         }
+//     }
+
+//     button {
+//         padding: 6px 10px;
+//         background-color: #21a1b3 !important;
+//     }
+
+//     .dropdown-item:hover {
+//         background-color: #ebe8e8;
+//         border-left: 2px solid #21a1b3;
+
+
+//     }
+
+//     .dropdown-item {
+//         fa-icon {
+//             &#pdf-icon {
+//                 color: #555555 !important;
+//             }
+
+//             &#excel-icon {
+//                 color: #555555 !important;
+//             }
+//         }
+//     }
+
+// }
+
+// #button-aggiungi-app {
+//     position: absolute;
+//     right: 168px;
+//     background-color: #97d271;
+//     display: flex;
+//     align-items: center !important;
+//     margin: auto;
+//     padding: 6px;
+
+//     fa-icon {
+//         &#plus-icon {
+//             color: white;
+//             display: flex;
+//             align-items: center !important;
+//             padding: 3 6px;
+//             font-size: 20px;
+//         }
+//     }
+// }
+
+// //form-ricerca-applicazioni
+
+// form {
+
+//     fa-icon {
+
+//         &#ricercaIc {
+//             color: dimgrey;
+//         }
+//     }
+// }
+
+
+// select {
+//     border: 0;
+//     border-top-left-radius: 10px;
+//     border-bottom-left-radius: 10px;
+//     border-right: 1px solid #dddddd;
+// }
+
+// #ricercaAmbiti {
+
+//     .cointainer-macro-ambiti {
+
+//         color: #555555 !important;
+
+//         .selezionato {
+//             background-color: #2d3340;
+
+
+//             & span {
+//                 color: white !important;
+//             }
+//         }
+//     }
+// }
+
+// //TABELLA APPLICAZIONI
+
+// .table-apps {
+//     text-align: center;
+
+//     td {
+//         vertical-align: middle;
+//     }
+// }
+
+// #table-responsive-applicazioni {
+//     max-width: 100%;
+//     overflow-x: revert;
+// }
+
+// //ordinamento tabella applicazioni
+// .icona-ord-app {
+//     color: #dddddd;
+// }
+
+// .icona-ord-app-selezionato {
+//     color: dimgrey !important;
+// }
+
+
+
+// #app-ordinamento-up {
+//     display: flex !important;
+
+
+// }
+
+// #app-ordinamento-down {
+//     display: flex !important;
+
+// }
+
+// .button-ordinamento {
+//     padding: 0;
+//     border: none;
+//     background-color: white;
+//     color: dimgrey;
+//     display: flex;
+//     margin: auto;
+// }
+
+
+
+// //corpo tabella applicazioni
+// #table-applicazioni {
+//     color: #555555;
+//     border-left: 4px solid white;
+
+// }
+
+// #table-applicazioni:hover {
+
+//     background-color: #ededed;
+//     border-left: 4px solid #21a1b3;
+// }
+
+
+
+// #table-applicazioni-macrocat {
+//     text-align: center;
+//     font-size: medium !important;
+// }
+
+// #table-applicazioni-nome {
+//     text-align: center;
+//     font-size: medium !important;
+// }
+
+// #table-applicazioni-descrizione {
+//     text-align: center;
+//     font-size: medium !important;
+// }
+
+// #table-applicazioni-dataInserimento {
+//     text-align: center;
+//     font-size: medium !important;
+// }
+
+// #app-non-trovata {
+//     text-align: center;
+//     font-size: medium;
+// }
+
+// //dropdown azioni applicazioni
+// #dropdown-button {
+//     display: flex;
+//     justify-content: center;
+
+//     .dropdown-toogle {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+
+//         fa-icon {
+//             padding: 0 3px;
+//             color: dimgrey;
+
+//             &#freccia {
+//                 font-size: 12px;
+//             }
+//         }
+//     }
+
+//     button {
+//         padding: 6px 10px;
+//         background-color: #dddddd;
+//     }
+
+//     .dropdown-item:hover {
+//         background-color: #ebe8e8;
+//         border-left: 2px solid #21a1b3;
+//     }
+
+// }
+
+// .dropdown-menu-apps {
+//     color: #555555;
+// }
+
+// //paginazione-applicazioni
+
+// .input-group-paginazione {
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .select-paginazione-app {
+//     color: #555555 !important;
+// }
+
+
+// .pagination-applicazione::ng-deep .page-item.active .page-link {
+//     background-color: #ebe8e8 !important;
+//     border-radius: 10px;
+//     padding: 0px !important;
+// }
+
+
+
+// .spinner-container {
+//     position: absolute;
+//     z-index: 1;
+//     background-color: rgba(234, 232, 234, 0.65);
+//     width: 100%;
+//     height: 100%;
+//     left: 0;
+//     top: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     backdrop-filter: blur(2px);
+// }
+
+// .tabella-apps-spin {
+//     position: relative;
+
+// }
+
+
+// @keyframes spin-carica {
+//     0% {
+//         transform: rotate(0deg);
+//         opacity: 0;
+//     }
+
+//     40% {
+//         transform: rotate(146deg);
+//         opacity: 1;
+//     }
+
+//     60% {
+//         transform: rotate(219deg);
+//         opacity: 1;
+//     }
+
+//     90% {
+//         transform: rotate(328deg);
+//         opacity: 0;
+//     }
+
+//     100% {
+//         transform: rotate(365deg);
+//         opacity: 0;
+//     }
+// }
+
+// #spinner-caricamento {
+//     z-index: 1;
+//     background-color: rgba(234, 232, 234, 0.65);
+//     border: 4px dotted #555555;
+//     border-top: 4px dotted transparent !important;
+//     border-radius: 100%;
+//     animation: spin-carica 1.8s linear infinite;
+// }
+
+// #spin-apps {
+//     display: flex;
+//     align-items: center;
+// }
+
+// th.th-button-ordinamento {
+//     font-size: 18px;
+
+
+// }
+
+// th.th-button-ordinamento strong {
+//     margin: 0 5px 0 0;
+//     white-space: pre;
+
+// }
+
+// .mostra-paginazione {
+
+//     font-size: medium;
+//     cursor: default
+// }
+
+
+.auth-content {
+    --background: #1e1e2e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .auth-container {
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  ion-segment {
+    --background: #12121f;
+    --color: white;
+    --color-checked: #ff9d00;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  ion-segment-button {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .auth-card {
+    background: #2a2a3b;
+    color: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 157, 0, 0.6);
+  }
+  

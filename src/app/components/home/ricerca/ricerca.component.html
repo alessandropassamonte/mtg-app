@@ -1,0 +1,64 @@
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/home']">
+        <fa-icon [icon]="faArrowAltCircleLeft" ></fa-icon> Torna alla Home</a>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h6>Parametri di ricerca</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="searchForm" (ngSubmit)="search(0, 12)">
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="latitude">Nome Carta:</label>
+              <input type="text" class="form-control" id="search" formControlName="search">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary"
+          *ngIf="!(!searchForm.get('search')?.value || searchForm.get('search')?.value.trim() === '')"><fa-icon [icon]="faSearch" ></fa-icon> CERCA</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="cards && cards.length > 0" class="card mb-4">
+    <div class="card-header">
+      <h6>Risultati di ricerca</h6>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div *ngFor="let item of cards" class="col-md-3 mb-3">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="item.png ? item.png : item.imageFace1" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a class="btn btn-primary" (click)="navigate(item.cardId, currentPage)">
+                  {{item.printedName ? (item.printedName + ' (' + item.name + ')') : item.name}} </a>
+              </h5>
+              <small *ngFor="let setItem of item.editions">
+                <div class="d-flex align-items-center">
+                  <img [src]="setItem.setIcon" alt="Edition" style="width: 40px; height: 40px;">
+                  <span class="ms-2">{{ setItem.setName }}</span>
+                </div>
+              </small>
+              <p>{{item.printedText ? item.printedText : item.oracleText}}</p>
+            </div>
+          </div>
+          <button (click)="confirmModalWithData(item)">Aggiungi Carta alla tua collezione</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center d-flex"  style="margin-left: auto; margin-right: auto;">
+      <pagination  [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems"
+        [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)" [maxSize]=10 [firstText]="'Prima'"
+        [lastText]="'Ultima'" [previousText]="'<'" [nextText]="'>'"></pagination>
+    </div>
+  </div>

@@ -1,0 +1,59 @@
+<ion-content class="home-content">
+  <ion-searchbar placeholder="Cerca una carta..." (ionInput)="searchCards($event)"></ion-searchbar>
+
+  <ion-grid class="action-buttons">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="full" color="tertiary" class="custom-button" routerLink="/scan">
+          <ion-icon name="camera-outline"></ion-icon> Scansiona
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="full" color="secondary" class="custom-button" routerLink="/deck">
+          <ion-icon name="albums-outline"></ion-icon> Mazzi
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list class="card-list">
+    <ion-item *ngFor="let card of recentCards" (click)="openCard(card.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="card.image" alt="{{ card.name }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="card-title">{{ card.name }}</h2>
+        <p class="card-type">{{ card.type }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="recentCards.length === 0" class="empty-state">
+    <p>Nessuna carta recente. Prova a cercare o scansionare una carta!</p>
+  </div>
+
+
+
+  <!-- Dropdown per la selezione del feed RSS -->
+  <ion-item>
+    <ion-label>Seleziona un feed</ion-label>
+    <ion-select [(ngModel)]="selectedFeed" (ionChange)="loadFeed()">
+      <ion-select-option *ngFor="let feed of rssFeeds" [value]="feed.url">
+        {{ feed.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-list class="card-list">
+    <ion-item *ngFor="let article of articles" (click)="openArticle(article.link)">
+      <ion-thumbnail slot="start" *ngIf="article.thumbnail">
+        <img src="{{article.thumbnail}}" alt="{{ article.thumbnail }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="rss-title">{{ article.title }}</h2>
+        <p class="rss-date">{{ article.pubDate | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

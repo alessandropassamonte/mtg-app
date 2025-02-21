@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Aggiunta Carta {{data.card?.printedName ? data.card?.printedName :
+        data.card?.name}} alla tua
+        Collezione</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="confirmForm" class="needs-validation">
+        <div class="row m-2 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="checkbox" formControlName="inVendita" id="remember-me">
+                    <label for="remember-me">In Vendita?</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="checkbox" formControlName="foil" id="isfoil">
+                    <label for="isfoil">Carta Foil ?</label>
+                </div>
+            </div>
+        </div>
+        <div class="row m-2 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="checkbox" formControlName="attivo" id="active">
+                    <label for="active">Attivo</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="active">Lingua</label>
+                    <select class="form-select" aria-label="Lang" id="lang" formControlName="lang">
+                        <option *ngFor="let language of languages" [value]="language.value">{{language.label}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-2 mt-3">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="quant">Quantità</label>
+                    <input type="number" formControlName="quantita" id="quant">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer text-center">
+    <div class="row">
+        <p>Sei sicuro di aggiungere la Carta {{data.card?.printedName ? data.card?.printedName : data.card?.name}}?</p>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="confirm()">Yes</button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-default" (click)="decline()">No</button>
+        </div>
+    </div>
+</div>

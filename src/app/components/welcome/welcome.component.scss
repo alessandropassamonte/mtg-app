@@ -1,0 +1,39 @@
+ion-content {
+    height: calc(100vh - 56px);
+    padding-bottom: 60px;
+  }
+  
+  @media (max-width: 600px) { /* Per schermi più piccoli */
+    ion-content {
+      height: calc(100vh - 50px);
+      padding-bottom: 50px;
+    }
+  }
+
+  /* 🔹 Lista carte - Bordi bianchi rimossi e ombra migliorata */
+  .card-list {
+    width: 100%;
+    padding: 0;
+  }
+  ion-item {
+    background: #2a2a3b;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    border: none; /* ✅ Rimosso il bordo bianco */
+    // box-shadow: 0px 4px 8px rgba(255, 157, 0, 0.4); /* Ombra dorata */
+  }
+  
+  /* 🔹 Testo delle carte */
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9d00;
+    // text-shadow: 1px 1px 6px rgba(255, 157, 0, 0.8); /* Effetto glow */
+  }
+  
+  .card-type {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  

@@ -1,0 +1,16 @@
+<div class="scan-container">
+  <!-- Contenitore per video e canvas -->
+  <div class="video-canvas-wrapper">
+    <!-- Video della fotocamera -->
+    <video #videoElement autoplay muted playsinline></video>
+    
+    <!-- Canvas per il disegno delle bounding box -->
+    <canvas #canvasElement></canvas>
+
+    <!-- Bottoni sovrapposti -->
+    <div class="button-container">
+      <button class="action-button">🔄 Riprova</button>
+      <button class="action-button">📸 Cerca Carte</button>
+    </div>
+  </div>
+</div>

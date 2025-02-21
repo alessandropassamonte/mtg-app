@@ -1,0 +1,20 @@
+<ion-content class="collection-content">
+  <ion-segment [(ngModel)]="activeTab">
+    <ion-segment-button value="sets">
+      <ion-icon name="albums-outline"></ion-icon>
+      <ion-label>Edizioni</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="owned">
+      <ion-icon name="library-outline"></ion-icon>
+      <ion-label>Possedute</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="activeTab === 'sets'">
+    <app-edizioni></app-edizioni>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'owned'">
+    <app-possedute></app-possedute>
+  </ng-container>
+</ion-content>

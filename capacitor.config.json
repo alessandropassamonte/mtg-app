@@ -1,0 +1,9 @@
+{
+  "appId": "com.example.app",
+  "appName": "MagicCardDetector",
+  "webDir": "dist/mtg-sell-app",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

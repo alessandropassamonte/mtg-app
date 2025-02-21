@@ -1,0 +1,105 @@
+<!-- <div class="card">
+    <div class="card-header" id="head-applicazioni">
+        <h3>
+            <strong>Entra in MTG Sell App </strong>
+        </h3>
+
+        <br>
+        <h6>Inserisci le credenziali definite in fase di registrazione dell'utenza</h6>
+
+    </div>
+</div>
+<div class="card mt-4">
+    <form [formGroup]="formLogin" class="needs-validation">
+        <div class="container">
+            <alert *ngIf="errorMessage" type="danger">
+                <strong>Errore</strong> Credenziali Errate.
+              </alert>
+            <div class="row m-2">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" class="form-control" formControlName="username"
+                            [ngClass]="{ 'is-invalid': formLogin.get('username')?.touched && formLogin.get('username')?.errors, 'is-valid': formLogin.get('username')?.valid }"
+                            placeholder="Inserisci username" required>
+                        <div *ngIf="formLogin.get('username')?.touched && formLogin.get('username')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="formLogin.get('username')?.hasError('required')">
+                                Inserisci Username.
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="form-control" formControlName="password"
+                            [ngClass]="{ 'is-invalid': formLogin.get('password')?.touched && formLogin.get('password')?.errors, 'is-valid': formLogin.get('password')?.valid }"
+                            placeholder="Inserisci la password">
+                        <div *ngIf="formLogin.get('password')?.touched && formLogin.get('password')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="formLogin.get('password')?.hasError('required')">
+                                Inserire la password.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2 mt-3">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input type="checkbox" formControlName="keepConnection" id="remember-me">
+                        <label for="remember-me">Resta connesso</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="col-4">
+                    <button (click)="login()" class="btn btn-primary" [disabled]="formLogin.invalid">Entra</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div> -->
+
+<ion-card class="auth-card">
+    <ion-card-header>
+      <ion-card-title>Accedi</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-alert *ngIf="errorMessage" color="danger">
+        <strong>Errore</strong>: Credenziali Errate.
+      </ion-alert>
+  
+      <form [formGroup]="formLogin">
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="formLogin.get('username')?.touched && formLogin.get('username')?.invalid">
+          <p *ngIf="formLogin.get('username')?.hasError('required')">Inserisci Username.</p>
+        </ion-text>
+  
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="formLogin.get('password')?.touched && formLogin.get('password')?.invalid">
+          <p *ngIf="formLogin.get('password')?.hasError('required')">Inserisci la password.</p>
+        </ion-text>
+  
+        <ion-item lines="none">
+          <ion-checkbox slot="start" formControlName="keepConnection"></ion-checkbox>
+          <ion-label>Resta connesso</ion-label>
+        </ion-item>
+  
+        <ion-button expand="full" (click)="login()" [disabled]="formLogin.invalid">Entra</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  

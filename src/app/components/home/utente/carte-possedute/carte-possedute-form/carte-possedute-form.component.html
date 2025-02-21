@@ -1,0 +1,105 @@
+<div class="container py-5">
+    <div class="row mb-2">
+        <div class="col">
+            <a class="btn btn-primary" [routerLink]="['/home/utente/carte']">
+                <fa-icon [icon]="faArrowAltCircleLeft" ></fa-icon> Torna alle tue Carte</a>
+        </div>
+    </div>
+
+    <div class="card mb-4" *ngIf="!readOnly">
+        <div class="card-header">
+            <h6>Aggiungi una carta alla tua collezione</h6>
+        </div>
+        <div class="card-body">
+            <div class="mb-3" style="position: relative;">
+                <label for="prof" class="form-label">Trova una Carta *</label>
+                <input type="text" #professione [(ngModel)]="searchValue" (input)="loadCards()" class="form-control "
+                    autocomplete="off">
+                <div #card class="contenitore-padre" id="i" *ngIf="cards && cards.length > 0 ">
+                    <div class="ui-autocomplete list-group border border-info" id="autocomplete-card">
+                        <div *ngFor="let item of cards">
+                            <a role="button" class="list-group-item list-group-item-action" (click)="addItem(item)">
+                                <ng-template #popTemplate>
+                                    <div [innerHtml]="returnHtml(item.png ? item.png : item.imageFace1 )"></div>
+                                </ng-template>
+                                <span class=" tooltip-350" [tooltip]="popTemplate">
+                                    <p>{{(item.printedName ? (item.printedName + ' (' + item.name + ')') : item.name) + ' - ' + item.lang}}
+                                    </p>
+                                    <p *ngFor="let setItem of item.editions" class="text-muted mb-1">
+                                        <img [src]="setItem.setIcon" alt="Edition" style="width: 20px; height: 20px;">
+                                        <span class="ms-2">{{ setItem.setName }}</span>
+                                    </p>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h6>Lista Carte da Aggiungere</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome Carta</th>
+                            <th>Nome Set</th>
+                            <th>Foil</th>
+                            <th>In Vendita</th>
+                            <th>Lingua</th>
+                            <th>Quantità</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="selectedItems && selectedItems.length > 0">
+                        <tr *ngFor="let item of selectedItems ; let i = index">
+                            <td>{{item.card?.printedName ? (item.card?.printedName + ' (' + item.card?.name + ')') :
+                                item.card?.name}} </td>
+                            <td><small *ngFor="let setItem of item.card?.editions">
+                                    <div class="d-flex align-items-center">
+                                        <img [src]="setItem.setIcon" alt="Edition" style="width: 20px; height: 20px;">
+                                        <span class="ms-2">{{ setItem.setName }}</span>
+                                    </div>
+                                </small></td>
+                            <td>{{ item.foil ? 'Sì' : 'No'}}</td>
+                            <td>{{ item.inVendita ? 'Sì' : 'No'}}</td>
+                            <td>{{ item.lang}}</td>
+                            <td>{{ item.quantita}}</td>
+                            <td><button *ngIf="!readOnly" class="btn btn-danger" (click)="removeItem(i)" [popover]="'Elimina'"
+                                triggers="mouseenter:mouseleave"> <fa-icon  [icon]="faTrash" [size]="'1x'"></fa-icon></button></td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="selectedItems && selectedItems.length === 0">
+                        <tr>
+                            <td>Nessuna carta presente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-end d-flex mb-3" *ngIf="selectedItems && selectedItems.length > 0">
+            <div class="col-2">
+                <button class="btn btn-danger" (click)="selectedItems = []" >Svuota carte da aggiungere</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" (click)="salvaCards()">Aggiungi Carte</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <a class="btn btn-primary" [routerLink]="['/home/utente/carte/aggiungi/scan']">
+                <fa-icon [icon]="faCamera" ></fa-icon> Scan Carte</a>
+        </div>
+    </div>
+</div>

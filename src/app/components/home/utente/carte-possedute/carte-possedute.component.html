@@ -1,0 +1,81 @@
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/home/utente']">
+        <fa-icon [icon]="faArrowAltCircleLeft"></fa-icon> Torna alla sezione Utente</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" (click)="navigate()">
+        Aggiungi Carte</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h6>Carte possedute</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>In Vendita</th>
+              <th>Name</th>
+              <th>Edizione</th>
+              <th>Foil</th>
+              <th>Lingua</th>
+              <th>Quantità</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="userCards && userCards.length > 0">
+
+            <tr *ngFor="let item of userCards" [tooltip]="popTemplate">
+              <ng-template #popTemplate>
+                <div [innerHtml]="returnHtml(item.card?.png ? item.card?.png : item.card?.imageFace1 )"></div>
+              </ng-template>
+              <th scope="row">
+
+                <label class="control control--checkbox">
+                  <input type="checkbox" (click)="changeInVendita(item)" [checked]="item.inVendita">
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <td>{{ item.card?.printedName ? item.card?.printedName + ' (' + item.card?.name + ')' : item.card?.name }}
+              </td>
+              <td>
+                <p *ngFor="let setItem of item.card?.editions" class="text-muted mb-1">
+                  <img [src]="setItem.setIcon" alt="Edition" style="width: 20px; height: 20px;">
+                  <span class="ms-2">{{ setItem.setName }}</span>
+                </p>
+              </td>
+              <td>
+                <label class="control control--checkbox">
+                  <input type="checkbox" (click)="changeFoil(item)" [checked]="item.foil">
+                  <div class="control__indicator"></div>
+                </label>
+              </td>
+              <td>
+                {{item.lang}}
+              </td>
+              <td>{{ item.quantita}}</td>
+
+              <td>
+                <button class="btn btn-danger" (click)="rimuovi(item)" [popover]="'Elimina'"
+                  triggers="mouseenter:mouseleave"> <fa-icon [icon]="faTrash" [size]="'1x'"></fa-icon></button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="userCards && userCards.length == 0">
+            <tr>
+              <td>Nessuna carta Posseduta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pagination *ngIf=" userCards &&  userCards.length > 0 && totalItems > itemsPerPage" [boundaryLinks]="true"
+        [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+        (pageChanged)="pageChanged($event)" [maxSize]=10 [firstText]="'Prima'" [lastText]="'Ultima'"
+        [previousText]="'<'" [nextText]="'>'"></pagination>
+    </div>
+  </div>
+</div>

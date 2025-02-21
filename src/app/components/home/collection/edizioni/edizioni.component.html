@@ -1,0 +1,23 @@
+<ion-content class="tab-content">
+  <ion-list>
+    <ion-item *ngFor="let edition of editions" (click)="selectSet(edition)">
+      <ion-thumbnail slot="start">
+        <img *ngIf="edition.setIcon; else placeholderIcon" [src]="edition.setIcon" alt="{{ edition.setName }}">
+        <ng-template #placeholderIcon>
+          <img src="assets/icons/default-set-icon.png" alt="Default Icon">
+        </ng-template>
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="set-title">{{ edition.setName }}</h2>
+        <p class="set-type">{{ edition.setType }} ({{ edition.releaseDate | date:'yyyy' }})</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadEditions($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Caricamento altre edizioni...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

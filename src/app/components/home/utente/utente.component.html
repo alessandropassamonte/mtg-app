@@ -1,0 +1,95 @@
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/home']">
+        <fa-icon [icon]="faArrowAltCircleLeft" ></fa-icon> Torna alla Home</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+
+          <img src="../../../../../assets/img/seller.png" alt="avatar" class="img-fluid"
+            style="width: 150px;">
+          <h5 class="my-3">{{ user?.username}}</h5>
+          <p class="text-muted mb-1">Venditore Carte MTG</p>
+
+
+
+        </div>
+      </div>
+      <div class="card mb-4 mb-lg-0">
+        <div class="card-body p-0">
+          <p class="m-3"><strong>Dati di accesso</strong>
+          </p>
+
+          <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex  align-items-center p-3">
+              <div class="form-group">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <label for="userId">Email:</label>
+                <input id="userId" [value]="user?.email" [disabled]="true" type="text" class="form-control">
+              </div>
+
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8"> 
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="mb-4"><strong>Informazioni Generali</strong><br>
+            <small>Informazioni del tuo profilo</small>
+          </p>
+          <div class="row mt-3">
+            <div class="col-sm-3">
+              <p class="mb-0">Nome</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.username}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.email}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row mb-4" >
+        <div class="col-md-12">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+              <p class="mb-4"><strong>Carte Possedute</strong><br>
+                <small>Visualizza e gestisci le tue carte</small>
+              </p>
+              <button class="btn btn-primary" (click)="navigate('/home/utente/carte')"> Vai a Carte Possedute <fa-icon [icon]="faArrowAltCircleRight" ></fa-icon> </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col-md-12">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+              <p class="mb-4"><strong>Ordini</strong><br>
+                <small>Visualizza e gestisci i tuoi ordini</small>
+              </p>
+              <button class="btn btn-primary" (click)="navigate('/home/utente/ordini')"> Vai alla gestione Ordini <fa-icon [icon]="faArrowAltCircleRight" ></fa-icon>  </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

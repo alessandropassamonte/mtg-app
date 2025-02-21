@@ -1,0 +1,69 @@
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/home/utente']">
+        <fa-icon [icon]="faArrowAltCircleLeft" ></fa-icon> Torna alla sezione Utente</a>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" (click)="navigate()">
+        Aggiungi/Modifica Ordine</a>
+    </div>
+
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h6>I tuoi Ordini</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Prezzo di Vendita</th>
+              <th>Prezzo CardMarket</th>
+              <th>Data Ordine</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="orders && orders.length > 0">
+            <tr *ngFor="let item of orders">
+              <td>
+                {{item.name}}
+              </td>
+              <td>
+                {{item.totalPrice | currency: 'EUR' }}
+              </td>
+              <td>
+                {{item.totalPriceCardMarket | currency: 'EUR' }}
+              </td>
+              <td>
+                {{getDate(item.orderDate)}}
+              </td>
+              <td>
+                <button class="btn btn-info" (click)="navigate(item)" [popover]="'Dettaglio'"
+                triggers="mouseenter:mouseleave"><fa-icon  [icon]="faInfoCircle" [size]="'1x'"></fa-icon></button>
+                <button class="btn btn-danger" (click)="delete(item)" [popover]="'Elimina'"
+                triggers="mouseenter:mouseleave"> <fa-icon  [icon]="faTrash" [size]="'1x'"></fa-icon></button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="orders && orders.length == 0">
+            <tr>
+              <td>Nessuna carta Posseduta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pagination *ngIf=" orders && orders.length > 0 && totalItems > itemsPerPage" [boundaryLinks]="true"
+        [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+        (pageChanged)="pageChanged($event)" [maxSize]=10 [firstText]="'Prima'" [lastText]="'Ultima'"
+        [previousText]="'<'" [nextText]="'>'"></pagination>
+    </div>
+  </div>
+
+
+
+</div>

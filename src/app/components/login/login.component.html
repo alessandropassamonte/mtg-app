@@ -1,0 +1,54 @@
+<!-- 
+
+
+
+<div class="container mt-2">
+    <ul class="nav nav-tabs nav-tabs-cards" id="card-simple" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="tabAttivo === 'card-simpletab1' ? ' active ' : ''" id="card-simple1-tab" data-bs-toggle="tab" href="#card-simpletab1" role="tab"
+                attr.aria-controls="{{tabAttivo}}" attr.aria-selected="{{tabAttivo === 'card-simpletab1' ? 'true' : 'false'}}"
+                (click)="cambiaTab('card-simpletab1')">
+                <h6>Log-In</h6>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="tabAttivo === 'card-simpletab2' ? ' active ' : ''" id="card-simple2-tab" data-bs-toggle="tab" href="#card-simpletab2" role="tab"
+            attr.aria-controls="{{tabAttivo}}" attr.aria-selected="{{tabAttivo === 'card-simpletab2' ? 'true' : 'false'}}"
+                (click)="cambiaTab('card-simpletab2')">
+                <h6>Registrazione</h6>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="card-simpleContent">
+        <div class="tab-pane p-4 fade" id="card-simpletab1" role="tabpanel" aria-labelledby="card-simple1-tab"  [ngClass]="tabAttivo === 'card-simpletab1' ? ' active show ' : ''"
+            *ngIf="tabAttivo === 'card-simpletab1'">
+            <app-login-form></app-login-form>
+        </div>
+        <div class="tab-pane p-4 fade" id="card-simpletab2" role="tabpanel" aria-labelledby="card-simple2-tab" [ngClass]="tabAttivo === 'card-simpletab2' ? ' active show ' : ''"
+            *ngIf="tabAttivo === 'card-simpletab2'">
+            <app-registration-form (registrazione)="chiusuraFormTab($event)"> </app-registration-form>
+        </div>
+    </div>
+</div> -->
+
+
+<ion-content class="auth-content">
+    <div class="auth-container">
+      <ion-segment [(ngModel)]="activeTab">
+        <ion-segment-button value="login">
+          <ion-label>Login</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="register">
+          <ion-label>Registrati</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+  
+      <ng-container *ngIf="activeTab === 'login'">
+        <app-login-form></app-login-form>
+      </ng-container>
+  
+      <ng-container *ngIf="activeTab === 'register'">
+        <app-registration-form (registrazione)="chiusuraFormTab($event)"> </app-registration-form>
+      </ng-container>
+    </div>
+  </ion-content>

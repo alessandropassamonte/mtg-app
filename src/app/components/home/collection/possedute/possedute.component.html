@@ -1,0 +1,25 @@
+<ion-segment [(ngModel)]="selectedCatalog">
+    <ion-segment-button *ngFor="let catalog of catalogs" [value]="catalog.name">
+      {{ catalog.name }}
+    </ion-segment-button>
+  </ion-segment>
+  
+  <ion-list class="card-list" *ngIf="ownedCards.length > 0">
+    <ion-item *ngFor="let card of ownedCards" (click)="openCard(card.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="card.image" alt="{{ card.name }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="card-title">{{ card.name }}</h2>
+        <p class="card-set">{{ card.set }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+  <ion-infinite-scroll (ionInfinite)="loadMoreOwnedCards($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Caricamento...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  

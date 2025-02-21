@@ -1,0 +1,26 @@
+.set-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9d00;
+  }
+  
+  .set-type {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  ion-item {
+    --background: #2a2a3b;
+    --color: white;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(255, 157, 0, 0.4);
+  }
+  
+  ion-thumbnail img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  

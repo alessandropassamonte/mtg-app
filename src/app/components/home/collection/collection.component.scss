@@ -1,0 +1,63 @@
+.collection-content {
+    background: #1e1e2e;
+    color: white;
+  }
+  
+  ion-segment {
+    --background: #12121f; /* Colore di sfondo del segmento */
+    --color: white; /* Colore testo non selezionato */
+    --color-checked: #ff9d00; /* Colore del testo quando selezionato */
+    border: 1px solid rgb(255, 157, 0); /* Bordo dorato */
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  ion-segment-button {
+    --background: transparent; /* Sfondo trasparente per evitare problemi */
+    --color: white; /* Testo normale */
+    --color-checked: #ff9d00; /* Testo quando il tab è attivo */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+  }
+  
+  ion-segment-button::part(indicator) {
+    background: #ff9d00; /* Colore della barra sottostante il tab selezionato */
+    height: 4px;
+    border-radius: 10px;
+  }
+  
+  
+  .set-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9d00;
+  }
+  
+  .set-year {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff9d00;
+    text-shadow: 1px 1px 6px rgba(255, 157, 0, 0.8);
+  }
+  
+  .card-set {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  ion-segment {
+    --background: #12121f;
+    --color: white;
+    --color-checked: #ff9d00;
+  }
+  
+  ion-segment-button {
+    font-weight: bold;
+    text-transform: uppercase;
+  }

@@ -1,0 +1,229 @@
+<!-- <div class="card">
+    <div class="card-header" id="head-applicazioni">
+        <h3>
+            <strong>Registrazione</strong>
+        </h3>
+
+        <br>
+        <h6>Inserisci i tuoi dati personali</h6>
+
+    </div>
+</div>
+<div class="card mt-4">
+    <form [formGroup]="registrazioneForm">
+        <div class="container">
+            <div class="row m-2">
+                <div class="col-sm-6">
+                    <label for="email">E-mail *:</label>
+                    <input type="text" id="email" class="form-control" formControlName="email"
+                        [ngClass]="{ 'is-invalid': registrazioneForm.get('email')?.touched && registrazioneForm.get('email')?.errors, 'is-valid': registrazioneForm.get('email')?.valid }"
+                        placeholder="Inserisci la tua email">
+                    <div *ngIf="registrazioneForm.get('email')?.touched && registrazioneForm.get('email')?.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="registrazioneForm.get('email')?.hasError('required')">
+                            Inserirsci l'e-mail.
+                        </div>
+                        <div *ngIf="registrazioneForm.get('email')?.hasError('email')">
+                            Inserirsci un'e-mail valida.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row m-2">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="name">Nome *:</label>
+                        <input type="text" id="name" class="form-control" formControlName="nome"
+                            [ngClass]="{ 'is-invalid': registrazioneForm.get('nome')?.touched && registrazioneForm.get('nome')?.errors, 'is-valid': registrazioneForm.get('nome')?.valid }"
+                            placeholder="Inserisci il tuo nome">
+                        <div *ngIf="registrazioneForm.get('nome')?.touched && registrazioneForm.get('nome')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="registrazioneForm.get('nome')?.hasError('required')">
+                                Inserirsci il nome.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="surname">Cognome *:</label>
+                        <input type="text" id="surname" class="form-control" formControlName="cognome"
+                            [ngClass]="{ 'is-invalid': registrazioneForm.get('cognome')?.touched && registrazioneForm.get('cognome')?.errors, 'is-valid': registrazioneForm.get('cognome')?.valid }"
+                            placeholder="Inserisci il tuo conome">
+                        <div *ngIf="registrazioneForm.get('cognome')?.touched && registrazioneForm.get('cognome')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="registrazioneForm.get('cognome')?.hasError('required')">
+                                Inserirsci il cognome.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="username">Username *:</label>
+                        <input type="text" id="username" class="form-control" formControlName="username"
+                            [ngClass]="{ 'is-invalid': registrazioneForm.get('username')?.touched && registrazioneForm.get('username')?.errors, 'is-valid': registrazioneForm.get('username')?.valid }"
+                            placeholder="Inserisci l'username">
+                        <div *ngIf="registrazioneForm.get('username')?.touched && registrazioneForm.get('username')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="registrazioneForm.get('username')?.hasError('required')">
+                                Inserirsci lo username.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="dataNascita">Data di Nascita *:</label>
+                    <input type="text" class="form-control" id="dataNascita" [bsConfig]="configDate"
+                        [ngClass]="{ 'is-invalid': registrazioneForm.get('dataNascita')?.touched && registrazioneForm.get('dataNascita')?.errors, 'is-valid': registrazioneForm.get('dataNascita')?.valid }"
+                        formControlName="dataNascita" autococomplete="off" [maxDate]="maxDate" bsDatepicker
+                        #dp="bsDatepicker">
+                    <div *ngIf="registrazioneForm.get('dataNascita')?.touched && registrazioneForm.get('dataNascita')?.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="registrazioneForm.get('dataNascita')?.hasError('required')">
+                            Seleziona la data di nascita.
+                        </div>
+                        <div
+                            *ngIf="registrazioneForm.get('dataNascita')?.errors && registrazioneForm.get('dataNascita')?.hasError('required')">
+                            Inserire una data valida.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="password">Password *:</label>
+                        <input type="password" id="password" class="form-control" formControlName="password"
+                            [ngClass]="{ 'is-invalid': registrazioneForm.get('password')?.touched && registrazioneForm.get('password')?.errors, 'is-valid': registrazioneForm.get('password')?.valid }"
+                            placeholder="Inserisci la password">
+                        <div *ngIf="registrazioneForm.get('password')?.touched && registrazioneForm.get('password')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="registrazioneForm.get('password')?.hasError('required')">
+                                Inserisci la password.
+                            </div>
+                            <div *ngIf="registrazioneForm.get('password')?.hasError('pattern')">
+                                La password deve essere di almeno 8 caratteri, contenere almeno una lettera maiuscola,
+                                minuscola ed almeno un carattere speciale.
+                            </div>
+                        </div>
+                        <div class="password-strength-meter">
+                            <div class="meter-value" [ngStyle]="{'width.%': getPasswordStrength()}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="password">Conferma Password *:</label>
+                        <input type="password" id="password" class="form-control" formControlName="confirmPassword"
+                            [ngClass]="{ 'is-invalid': registrazioneForm.get('confirmPassword')?.touched && registrazioneForm.get('confirmPassword')?.errors, 'is-valid': registrazioneForm.get('confirmPassword')?.valid }"
+                            placeholder="Conferma la password">
+                        <div *ngIf="registrazioneForm.get('confirmPassword')?.touched && registrazioneForm.get('confirmPassword')?.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="registrazioneForm.get('confirmPassword')?.hasError('required')">
+                                Re-inserisci la password per conferma.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 mb-4 ">
+                <div class="col-4">
+                    <button (click)="registrazione()" [disabled]="registrazioneForm.invalid"
+                        class="btn btn-primary">Registrati</button>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+</div> -->
+
+<ion-card class="auth-card">
+    <ion-card-header>
+      <ion-card-title>Registrati</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="registrazioneForm">
+        <!-- Email -->
+        <ion-item>
+          <ion-label position="floating">E-mail *</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('email')?.touched && registrazioneForm.get('email')?.invalid">
+          <p *ngIf="registrazioneForm.get('email')?.hasError('required')">Inserisci l'e-mail.</p>
+          <p *ngIf="registrazioneForm.get('email')?.hasError('email')">Inserisci un'e-mail valida.</p>
+        </ion-text>
+  
+        <!-- Nome e Cognome -->
+        <ion-item>
+          <ion-label position="floating">Nome *</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('nome')?.touched && registrazioneForm.get('nome')?.invalid">
+          <p *ngIf="registrazioneForm.get('nome')?.hasError('required')">Inserisci il nome.</p>
+        </ion-text>
+  
+        <ion-item>
+          <ion-label position="floating">Cognome *</ion-label>
+          <ion-input type="text" formControlName="cognome"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('cognome')?.touched && registrazioneForm.get('cognome')?.invalid">
+          <p *ngIf="registrazioneForm.get('cognome')?.hasError('required')">Inserisci il cognome.</p>
+        </ion-text>
+  
+        <!-- Username -->
+        <ion-item>
+          <ion-label position="floating">Username *</ion-label>
+          <ion-input type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('username')?.touched && registrazioneForm.get('username')?.invalid">
+          <p *ngIf="registrazioneForm.get('username')?.hasError('required')">Inserisci lo username.</p>
+        </ion-text>
+  
+        <!-- Data di Nascita -->
+        <ion-item>
+          <ion-label position="floating">Data di Nascita *</ion-label>
+          <ion-datetime formControlName="dataNascita" displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('dataNascita')?.touched && registrazioneForm.get('dataNascita')?.invalid">
+          <p *ngIf="registrazioneForm.get('dataNascita')?.hasError('required')">Seleziona la data di nascita.</p>
+        </ion-text>
+  
+        <!-- Password -->
+        <ion-item>
+          <ion-label position="floating">Password *</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('password')?.touched && registrazioneForm.get('password')?.invalid">
+          <p *ngIf="registrazioneForm.get('password')?.hasError('required')">Inserisci la password.</p>
+          <p *ngIf="registrazioneForm.get('password')?.hasError('pattern')">
+            La password deve essere di almeno 8 caratteri, contenere almeno una lettera maiuscola, una minuscola ed un carattere speciale.
+          </p>
+        </ion-text>
+  
+        <!-- Indicatore di Forza Password -->
+        <div class="password-strength-meter">
+          <div class="meter-value" [ngStyle]="{'width.%': getPasswordStrength()}"></div>
+        </div>
+  
+        <!-- Conferma Password -->
+        <ion-item>
+          <ion-label position="floating">Conferma Password *</ion-label>
+          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registrazioneForm.get('confirmPassword')?.touched && registrazioneForm.get('confirmPassword')?.invalid">
+          <p *ngIf="registrazioneForm.get('confirmPassword')?.hasError('required')">Re-inserisci la password per conferma.</p>
+        </ion-text>
+  
+        <!-- Pulsante Registrati -->
+        <ion-button expand="full" (click)="registrazione()" [disabled]="registrazioneForm.invalid">Registrati</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>

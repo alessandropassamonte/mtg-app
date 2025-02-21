@@ -1,0 +1,111 @@
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col">
+      <a class="btn btn-primary" (click)="navigate()">
+        <fa-icon [icon]="faArrowAltCircleLeft" ></fa-icon> Torna alla Ricerca</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+
+          <div style="position: relative;">
+            <img [src]="currentImage" alt="avatar" class="img-fluid" style="width: max-content;">
+            <img *ngIf="card?.imageFace2" src="../../../../assets/img/icona_switch.png" alt="Switch Icon" class="switch-icon" (click)="toggleImage()" style="position: absolute; top: 85%; right: 45%;; cursor: pointer;">
+          </div>
+          <h5 class="my-3">{{ card.printedName ? (card.printedName + ' (' + card.name + ')') : card.name }}</h5>
+          <p *ngFor="let setItem of card.editions" class="text-muted mb-1">
+            <img [src]="setItem.setIcon" alt="Edition" style="width: 20px; height: 20px;">
+            <span class="ms-2">{{ setItem.setName }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="card mb-4 mb-lg-0">
+        <div class="card-body p-0">
+          <p class="m-3"><strong>Dati di accesso</strong>
+          </p>
+
+          <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex  align-items-center p-3">
+              <div class="form-group">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <label for="userId">Username:</label>
+                <input id="userId" [disabled]="true" type="text" class="form-control">
+              </div>
+
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="mb-4">Informazioni Carta:
+          </p>
+          <div class="row mt-3">
+            <div class="col-sm-3">
+              <p class="mb-0">Nome</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"> {{card.printedName ? (card.printedName + ' (' + card.name + ')') : card.name}}
+              </p>
+            </div>
+          </div>
+          <hr>
+          <div class="row mt-3">
+            <div class="col-sm-3">
+              <p class="mb-0">Testo Carta</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{card.printedText ? card.printedText : card.oracleText}}</p>
+            </div>
+          </div>
+
+
+          <hr>
+          <div class="row mt-3">
+            <div class="col-sm-3">
+              <p class="mb-0">Tipo Carta</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{card.printedTypeLine ? card.printedTypeLine : card.typeLine}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Identità carta</p>
+            </div>
+            <div class="col-sm-9">
+              <p *ngFor="let color of card.colorIdentities" class="text-muted mb-0"><img [src]="color.image"
+                  alt="Edition" style="width: 20px; height: 20px;">
+            </div>
+          </div>
+          <hr>
+          <div class="row mt-3">
+            <div class="col-sm-3">
+              <p class="mb-0">Prezzo CardMarket</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{card.priceCM}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+              <button class="btn btn-primary" (click)="confirmModalWithData(card)">+ Aggiungi Carta alla tua collezione</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

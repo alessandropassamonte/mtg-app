@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Aggiunta Ordine</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="confirmForm" class="needs-validation">
+        <div class="row m-2 mt-3">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="number"  min="0.00" max="10000.00" step="0.10" class="form-control" formControlName="price" id="numb">
+                    <label for="numb">Inserisci prezzo di vendita</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="number" class="form-control" formControlName="quantity" id="numb2">
+                    <label for="numb2">Specifica la quantià</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="checkbox" formControlName="foil" id="remember-me">
+                    <label for="remember-me">Foil</label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer text-center">
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="confirm()">Salva</button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-default" (click)="decline()">Annulla</button>
+        </div>
+    </div>
+</div>
