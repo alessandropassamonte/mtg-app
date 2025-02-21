@@ -1,0 +1,45 @@
+.cards-content {
+    --background: #1e1e2e;
+    color: white;
+    padding: 10px;
+  }
+  
+  ion-toolbar {
+    --background: #12121f;
+    --color: white;
+  }
+  
+  .cards-list {
+    padding: 0;
+  }
+  
+  .card-item {
+    --background: #2a2a3b;
+    --color: white;
+    border-radius: 10px;
+    margin: 8px 12px; /* 🔹 Margine ridotto per migliorare spaziatura */
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* 🔹 Migliora la leggibilità */
+    min-height: 100px; /* 🔹 Altezza più equilibrata */
+    box-shadow: 0px 2px 4px rgba(255, 157, 0, 0.2); /* 🔹 Ombra più leggera */
+  }
+  
+  .card-image img {
+    width: 85px; /* 🔹 Immagini più grandi */
+    height: 120px;
+    border-radius: 5px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff9d00;
+  }
+  
+  .card-type {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  

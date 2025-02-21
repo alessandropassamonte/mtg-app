@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Edition } from 'src/app/models/edition';
-import { EditionService } from 'src/app/services/edition.service';
+import { CardDatabaseService } from 'src/app/services/card-database.service';
 
 @Component({
   selector: 'app-edizioni',
@@ -12,14 +12,16 @@ export class EdizioniComponent {
   currentPage = 0;
   totalPages = 1;
   isLoading = false;
+  selectedEdition: Edition | null = null;
 
-  constructor(private editionService: EditionService) {}
+  constructor(private cardDatabaseService: CardDatabaseService) {}
 
   ngOnInit() {
     this.loadEditions()
   }
-  selectSet(set: any) {
-    console.log('Set selezionato:', set);
+  selectSet(edition: Edition) {
+    console.log('Set selezionato:', edition);
+    this.selectedEdition = edition;
   }
 
   loadMoreSets(event: any) {
@@ -36,7 +38,7 @@ export class EdizioniComponent {
     }
 
     this.isLoading = true;
-    this.editionService.getEditions(this.currentPage, 10).subscribe(response => {
+    this.cardDatabaseService.getEditions(this.currentPage, 10).subscribe(response => {
       this.editions = [...this.editions, ...response.content]; // ✅ Aggiungiamo nuove edizioni senza sovrascrivere
       this.totalPages = response.totalPages;
       this.currentPage++;

@@ -25,9 +25,10 @@ import { CollectionComponent } from './collection/collection.component';
 import { PosseduteComponent } from './collection/possedute/possedute.component';
 import { EdizioniComponent } from './collection/edizioni/edizioni.component';
 import { IonicModule } from '@ionic/angular';
+import { ListCardComponent } from './collection/list-card/list-card.component';
 
 @NgModule({
-  declarations: [HomeComponent, HomeNavComponent, HomeSearchComponent, UtenteComponent, RicercaComponent, DettaglioComponent, CartePosseduteComponent, GestioneOrdiniComponent, OrdineFormComponent, CartePosseduteFormComponent, CollectionComponent, PosseduteComponent, EdizioniComponent],
+  declarations: [HomeComponent, HomeNavComponent, HomeSearchComponent, UtenteComponent, RicercaComponent, DettaglioComponent, CartePosseduteComponent, GestioneOrdiniComponent, OrdineFormComponent, CartePosseduteFormComponent, CollectionComponent, PosseduteComponent, EdizioniComponent, ListCardComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -1,5 +1,5 @@
 <ion-content class="tab-content">
-  <ion-list>
+  <ion-list *ngIf="!selectedEdition">
     <ion-item *ngFor="let edition of editions" (click)="selectSet(edition)">
       <ion-thumbnail slot="start">
         <img *ngIf="edition.setIcon; else placeholderIcon" [src]="edition.setIcon" alt="{{ edition.setName }}">
@@ -14,7 +14,9 @@
     </ion-item>
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="loadEditions($event)">
+  <app-list-card *ngIf="selectedEdition" [editionId]="selectedEdition.setCode"></app-list-card>
+
+  <ion-infinite-scroll *ngIf="!selectedEdition" (ionInfinite)="loadEditions($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Caricamento altre edizioni...">

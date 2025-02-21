@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Carte dell'edizione</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="cards-content">
+    <ion-list class="cards-list">
+      <ion-item *ngFor="let card of cards" class="card-item">
+        <ion-thumbnail slot="start" class="card-image">
+          <img [src]="card.png" alt="{{ card.name }}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2 class="card-title">{{ card.name }}</h2>
+          <p class="card-type">{{ card.type }} - {{ card.rarity }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  
+    <ion-infinite-scroll (ionInfinite)="loadCards($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Caricamento altre carte...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+  
