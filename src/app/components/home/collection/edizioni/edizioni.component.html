@@ -1,15 +1,15 @@
 <ion-content class="tab-content">
-  <ion-list *ngIf="!selectedEdition">
+  <ion-list class="card-list" *ngIf="!selectedEdition">
     <ion-item *ngFor="let edition of editions" (click)="selectSet(edition)">
       <ion-thumbnail slot="start">
-        <img *ngIf="edition.setIcon; else placeholderIcon" [src]="edition.setIcon" alt="{{ edition.setName }}">
-        <ng-template #placeholderIcon>
-          <img src="assets/icons/default-set-icon.png" alt="Default Icon">
-        </ng-template>
+        <img *ngIf="edition.setIcon" [src]="edition.setIcon" alt="{{ edition.setName }}" fill="color: aqua;">
+        <!-- <ng-template #placeholderIcon>
+          <img src="assets/icons/default-set-icon.png" alt="Default Icon" fill="white">
+        </ng-template> -->
       </ion-thumbnail>
       <ion-label>
         <h2 class="set-title">{{ edition.setName }}</h2>
-        <p class="set-type">{{ edition.setType }} ({{ edition.releaseDate | date:'yyyy' }})</p>
+        <p class="set-type">{{ edition.setType }} ({{ edition.releaseDate | date:'dd/MM/yyyy' }})</p>
       </ion-label>
     </ion-item>
   </ion-list>

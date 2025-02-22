@@ -8,6 +8,10 @@
     --background: #12121f;
     --color: white;
   }
+
+  .item-native{
+    height: 200px;
+  }
   
   .cards-list {
     padding: 0;
@@ -21,8 +25,7 @@
     border: none;
     display: flex;
     align-items: center;
-    padding: 10px; /* 🔹 Migliora la leggibilità */
-    min-height: 100px; /* 🔹 Altezza più equilibrata */
+    min-height: 200px; /* 🔹 Altezza più equilibrata */
     box-shadow: 0px 2px 4px rgba(255, 157, 0, 0.2); /* 🔹 Ombra più leggera */
   }
   
