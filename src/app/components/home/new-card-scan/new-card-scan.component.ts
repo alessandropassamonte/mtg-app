@@ -1,14 +1,21 @@
 import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Motion } from '@capacitor/motion';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faCameraRetro, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as tf from '@tensorflow/tfjs';
+import { HttpClient } from '@angular/common/http';
 
 interface CameraSettings {
   focusMode: string;
   exposureMode: string;
   whiteBalanceMode: string;
   zoom: number;
+}
+
+interface DetectedCard {
+  imageBase64: string;
+  confidence: number;
+  timestamp: string;
 }
 
 @Component({
@@ -23,7 +30,15 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
 
   model!: tf.GraphModel;
   logs: string[] = [];
-  faCamera = faCamera;
+  faCamera = faCameraRetro;
+  faSpinner = faSpinner;
+  isSending = false;
+  lastDetectedBoxes: Array<{
+    coords: number[];
+    confidence: number;
+  }> = [];
+
+
   
   private detectionInterval: any;
   private stream: MediaStream | null = null;
@@ -45,7 +60,7 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    private platform: Platform
+    private platform: Platform, private http: HttpClient
   ) {
     this.imageProcessor = new ImageProcessor();
   }
@@ -221,7 +236,7 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
     // Add tilt indicator if device is not level
     if (Math.abs(tiltX) > 5 || Math.abs(tiltY) > 5) {
       ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-      ctx.font = '20px Arial';
+      ctx.font = '60px Arial';
       ctx.fillText('Please hold the device level', 10, 30);
     }
   }
@@ -282,6 +297,84 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Aggiungiamo un metodo per catturare e inviare le immagini
+  async captureAndSendDetections() {
+    if (this.isSending || this.lastDetectedBoxes.length === 0) {
+      this.addLog('No cards detected or already sending');
+      return;
+    }
+
+    try {
+      this.isSending = true;
+      this.addLog('Capturing detected cards...');
+
+      const video = this.videoElement.nativeElement;
+      const detectedCards: DetectedCard[] = [];
+
+      // Creiamo un canvas temporaneo per il ritaglio
+      const tempCanvas = document.createElement('canvas');
+      const tempCtx = tempCanvas.getContext('2d')!;
+
+      // Processiamo ogni box rilevato
+      for (const detection of this.lastDetectedBoxes) {
+        const [yMin, xMin, yMax, xMax] = detection.coords;
+        
+        // Calcoliamo le dimensioni reali sul video
+        const scaleX = video.videoWidth / 640;
+        const scaleY = video.videoHeight / 640;
+        
+        const realX = xMin * scaleX;
+        const realY = yMin * scaleY;
+        const realWidth = (xMax - xMin) * scaleX;
+        const realHeight = (yMax - yMin) * scaleY;
+
+        // Impostiamo le dimensioni del canvas temporaneo
+        tempCanvas.width = realWidth;
+        tempCanvas.height = realHeight;
+
+        // Ritaglia l'immagine dal video
+        tempCtx.drawImage(
+          video,
+          realX, realY,
+          realWidth, realHeight,
+          0, 0,
+          realWidth, realHeight
+        );
+
+        // Convertiamo in base64
+        const imageBase64 = tempCanvas.toDataURL('image/jpeg', 0.95);
+
+        detectedCards.push({
+          imageBase64,
+          confidence: detection.confidence,
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // Inviamo le immagini all'API
+      await this.sendDetectedCards(detectedCards);
+      
+      this.addLog(`Successfully sent ${detectedCards.length} cards`);
+
+    } catch (error) {
+      this.addLog(`Error capturing/sending cards: ${error}`);
+    } finally {
+      this.isSending = false;
+    }
+  }
+
+  private async sendDetectedCards(cards: DetectedCard[]) {
+    const API_URL = 'your-api-endpoint/detected-cards';
+    
+    try {
+      const response = await this.http.post(API_URL, { cards }).toPromise();
+      return response;
+    } catch (error) {
+      throw new Error(`API error: ${error}`);
+    }
+  }
+
+  // Modifichiamo processDetections per salvare le ultime detection
   private async processDetections(prediction: tf.Tensor, canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext('2d')!;
     const data = await prediction.array() as number[][][];
@@ -313,13 +406,19 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
     const selectedIndices = await tf.image.nonMaxSuppressionAsync(
       tf.tensor2d(boxesArr),
       tf.tensor1d(scoresArr),
-      20, // max boxes
-      0.5 // NMS threshold
+      20,
+      0.5
     );
 
     const selectedIdxArray = await selectedIndices.array();
     
-    // Draw detections with enhanced visualization
+    // Salviamo le detection per il prossimo capture
+    this.lastDetectedBoxes = selectedIdxArray.map(idx => ({
+      coords: boxesArr[idx],
+      confidence: scoresArr[idx]
+    }));
+    
+    // Draw detections
     this.drawDetections(selectedIdxArray, boxesArr, scoresArr, canvas);
     
     tf.dispose(selectedIndices);
@@ -352,7 +451,7 @@ export class NewCardScanComponent implements OnInit, OnDestroy {
 
       // Draw confidence label with background
       const label = `Magic Card (${(conf * 100).toFixed(1)}%)`;
-      ctx.font = '16px Arial';
+      ctx.font = '60px Arial';
       const labelWidth = ctx.measureText(label).width;
       
       ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';

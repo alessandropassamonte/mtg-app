@@ -25,6 +25,17 @@
           class="camera-button">
           <fa-icon [icon]="faCamera"></fa-icon>
         </ion-button>
+  
+        <!-- Capture button -->
+        <ion-button 
+          (click)="captureAndSendDetections()" 
+          color="primary" 
+          shape="round"
+          class="capture-button"
+          [disabled]="isSending || lastDetectedBoxes.length === 0">
+          <fa-icon [icon]="isSending ? faSpinner : faCameraRetro" [spin]="isSending"></fa-icon>
+          {{ isSending ? 'Sending...' : 'Capture' }}
+        </ion-button>
       </div>
   
       <!-- Feedback overlay -->
