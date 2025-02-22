@@ -11,7 +11,7 @@
   
   <ion-content class="cards-content">
     <ion-list class="card-list">
-      <ion-item *ngFor="let card of cards" class="card-item">
+      <ion-item *ngFor="let card of cards" class="card-item" (click)="openCardDetail(card.cardId)">
         <ion-thumbnail slot="start" class="card-image">
           <img [src]="card.png" alt="{{ card.name }}">
         </ion-thumbnail>

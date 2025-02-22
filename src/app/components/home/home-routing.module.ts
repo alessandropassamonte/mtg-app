@@ -10,6 +10,7 @@ import { OrdineFormComponent } from './utente/gestione-ordini/ordine-form/ordine
 import { CartePosseduteFormComponent } from './utente/carte-possedute/carte-possedute-form/carte-possedute-form.component';
 import { CardScanComponent } from '../login/card-scan/card-scan.component';
 import { CollectionComponent } from './collection/collection.component';
+import { CardDetailComponent } from './collection/card-detail/card-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,9 @@ const routes: Routes = [
   {path: 'utente/ordini/form', component: OrdineFormComponent},
   {path: 'collection', component: CollectionComponent},
   {path: 'ricerca', component: RicercaComponent},
-  { path: 'dettaglio/:id', component: DettaglioComponent }
+  { path: 'dettaglio/:id', component: DettaglioComponent },
+  { path: 'card/:id', component: CardDetailComponent }
+  
 
 ];
 

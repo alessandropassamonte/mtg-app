@@ -1,0 +1,45 @@
+<!-- card-scan.component.html -->
+<ion-content>
+    <div class="scanner-container">
+      <!-- Main video feed -->
+      <video 
+        #videoElement 
+        [width]="IDEAL_RESOLUTION.width.ideal" 
+        [height]="IDEAL_RESOLUTION.height.ideal"
+        class="video-feed"
+        playsinline>
+      </video>
+  
+      <!-- Detection overlay canvas -->
+      <canvas #canvasElement class="detection-overlay"></canvas>
+      
+      <!-- Guide overlay canvas -->
+      <canvas #overlayCanvas class="guide-overlay"></canvas>
+  
+      <!-- Camera controls -->
+      <div class="camera-controls">
+        <ion-button 
+          (click)="startCamera()" 
+          color="light" 
+          shape="round"
+          class="camera-button">
+          <fa-icon [icon]="faCamera"></fa-icon>
+        </ion-button>
+      </div>
+  
+      <!-- Feedback overlay -->
+      <div class="feedback-overlay" *ngIf="logs.length > 0">
+        <div class="status-indicator">
+          <ion-spinner *ngIf="isProcessing" name="crescent"></ion-spinner>
+          <span class="status-text">Scannerizzazione carte in corso...</span>
+        </div>
+        
+        <!-- Debug logs in development -->
+        <!-- <div class="debug-logs" *ngIf="isDevelopment">
+          <div class="log-entry" *ngFor="let log of logs.slice(-3)">
+            {{ log }}
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </ion-content>

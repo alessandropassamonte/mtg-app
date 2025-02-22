@@ -26,9 +26,11 @@ import { PosseduteComponent } from './collection/possedute/possedute.component';
 import { EdizioniComponent } from './collection/edizioni/edizioni.component';
 import { IonicModule } from '@ionic/angular';
 import { ListCardComponent } from './collection/list-card/list-card.component';
+import { CardDetailComponent } from './collection/card-detail/card-detail.component';
+import { NewCardScanComponent } from './new-card-scan/new-card-scan.component';
 
 @NgModule({
-  declarations: [HomeComponent, HomeNavComponent, HomeSearchComponent, UtenteComponent, RicercaComponent, DettaglioComponent, CartePosseduteComponent, GestioneOrdiniComponent, OrdineFormComponent, CartePosseduteFormComponent, CollectionComponent, PosseduteComponent, EdizioniComponent, ListCardComponent],
+  declarations: [HomeComponent, HomeNavComponent, HomeSearchComponent, UtenteComponent, RicercaComponent, DettaglioComponent, CartePosseduteComponent, GestioneOrdiniComponent, OrdineFormComponent, CartePosseduteFormComponent, CollectionComponent, PosseduteComponent, EdizioniComponent, ListCardComponent, CardDetailComponent, NewCardScanComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -30,7 +30,20 @@ export class CardDatabaseService {
     return this.http.get<{ content: Edition[], totalPages: number }>(`${this.apiUrl + '/editions'}?page=${page}&size=${size}`);
   }
 
-  getCardsByEdition(page: number = 0, size: number = 10, editionCode: string): Observable<{ content: Edition[], totalPages: number }> {
+  getCardsByEdition(page: number = 0, size: number = 10, editionCode: string): Observable<{ content: any[], totalPages: number }> {
     return this.http.get<{ content: Edition[], totalPages: number }>(`${this.apiUrl + '/cardsEdition'}?page=${page}&size=${size}&editionCode=${editionCode}`);
   }
+
+  getCardDetails(cardId: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl + '/cardDetail/' + cardId}`);
+  }
+  
+  getCardVersions(cardId: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl + '/cardDetail/' + cardId +'/version'}`);
+  }
+  
+  getCardPrices(cardId: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl + '/cardDetail/' + cardId +'/prices'}`);
+  }
+  
 }

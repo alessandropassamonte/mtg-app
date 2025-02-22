@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CardDatabaseService } from 'src/app/services/card-database.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ListCardComponent {
   totalPages = 1;
   isLoading = false;
 
-  constructor(private cardDatabaseService: CardDatabaseService) {}
+  constructor(private cardDatabaseService: CardDatabaseService, private router: Router) {}
 
   ngOnInit() {
     if (this.editionId) {
@@ -23,6 +24,10 @@ export class ListCardComponent {
 
   goBack() {
     this.editionId = null; // Torna alla selezione delle edizioni
+  }
+
+  openCardDetail(cardId: any) {
+    this.router.navigate(['/home/card', cardId]); // 🔹 Naviga verso il dettaglio della carta
   }
 
   loadCards(event?: any) {
